@@ -1,0 +1,11 @@
+.item {
+    display: flex;
+    width:200px; 
+    justify-content:space-around;
+    border:1px solid #ccc;
+    margin: 4px;
+    padding: 4px;
+}
+.item:hover{
+    background-color: #ccc;
+}
