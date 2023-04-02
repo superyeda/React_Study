@@ -1,26 +1,24 @@
-import React, { Component } from 'react'
-import { Route,Switch,Redirect } from 'react-router-dom'
-import Home from './components/Home'
-import About from './components/About'
-import MyNavLink from './components/MyNavLink'
-export default class APP extends Component {
-  render() {
-    return (
-      <div>
-          <div className="route">
-            <MyNavLink to='/home'>Home</MyNavLink>
-            <MyNavLink to="/about">About</MyNavLink>
-          </div>
-          <div className="content">
-            {/* Route单一匹配提高效率 */}
-            <Switch>
-              {/* exact精准匹配 */}
-              <Route exact path="/home" component={Home} />
-              <Route path="/about" component={About} />
-              <Redirect to="/home"/>
-            </Switch>
-          </div>
-      </div>
-    )
+import React from 'react'
+import {NavLink,useRoutes} from 'react-router-dom'
+import routes from './routes';
+export default function APP() {
+  const element=useRoutes(routes)
+  function computedClassName(){
+    console.log("计算样式属性");
   }
+  return (
+    <div>
+      <NavLink className={computedClassName} to="/home">HOME</NavLink>
+      <NavLink to="/about">About</NavLink>
+      <br />
+        {/**
+         * router v6版本
+         * 1. 移除了<Switch>引入<Routes>
+         * 2. Route组件配合Routes组件使用，Route必须使用Routes包裹
+         * 3. <Route caseSensitive>属性指定匹配时是否指定大小写
+         * 4. 
+         */}
+        {element}
+    </div>
+  )
 }
